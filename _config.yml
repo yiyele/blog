@@ -122,7 +122,7 @@ safe: false
 highlighter: pygments
 title: 千叶正志
 description: To Be a Simple Bright Man
-theme: hack
+theme: modernist
 disqusname: nghuyong
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
