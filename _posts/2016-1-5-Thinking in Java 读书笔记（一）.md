@@ -5,7 +5,6 @@ category: 读书笔记
 comments: true
 ---
 
-#Tinking in Java 读书笔记（一）#
 ##1.对象导论##
 ###前言###
 * 面对对象程序设计(Object-oriented Programming OOP)
