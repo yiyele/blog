@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Java 中的并发
+title: Android Studio 安装教程
 category: 技术
 comments: true
 ---
