@@ -1,3 +1,10 @@
+---
+layout: post
+title: Tinking in Java 读书笔记（二） 一切都是对象
+category: 读书笔记
+comments: true
+---
+
 ##2.一切都是对象
 ###2.1用引用操纵对象
 ```java
