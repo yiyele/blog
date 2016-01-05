@@ -1,3 +1,11 @@
+---
+layout: post
+title: Java 中的并发
+category: 技术
+comments: true
+---
+
+
 ##Android Studio 安装教程 ##
 
 ###1.搭建Java环境
