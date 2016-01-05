@@ -5,9 +5,6 @@ category: 技术
 comments: true
 ---
 
-
-##Android Studio 安装教程 ##
-
 ###1.搭建Java环境
 ###2.到[Android Studio中文社区](http://www.android-studio.org/)下载最新的Android Studio版本
 ![在此处下载最新版本](http://cl.ly/27060U3B090C/360%E6%88%AA%E5%9B%BE20160104205248923.jpg)
