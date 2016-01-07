@@ -68,7 +68,11 @@ public class TestLabel {
 
 ```
 ![](http://i.imgur.com/H3zVmTN.png)
+
 1.break,中断内部迭代，回到外部迭代。
+
 2.continue,使执行点回到内部迭代的起始处。
+
 3.continue label 同时中断所有迭代，再从外部中断开始。
+
 4.break label 同时中断所有迭代，不再进入中断。
