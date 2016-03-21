@@ -9,4 +9,4 @@ comments: true
 ###写点什么呢？
 
 Hello Blog!
-![](images/test.jpg)
+![](http://simplebrightman.github.io/blog/images/test.jpg)
