@@ -10,6 +10,7 @@ comments: true
 ```
 pip install djangorestframework
 ```
+
 ###2.一个小demo
 ####2.1创建django工程
 ```python
