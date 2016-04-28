@@ -4,27 +4,27 @@ title: Django-Restful框架
 category: 技术
 comments: true
 ---
-###1.准备工作
+#1.准备工作
 * 安装django框架
 * 安装django-rsetful 框架
 ```
 pip install djangorestframework
 ```
 
-###2.一个小demo
-####2.1创建django工程
+#2.一个小demo
+##2.1创建django工程
 ```python
 
     django admin startproject restful
 	django admin startapp demo
 ```
-####2.2配置restful环境
+##2.2配置restful环境
 ```python
 
     修改restful/settings.py
 	在INSTALLED_APPS 添加 'rest_framework'
 ```
-####2.3编写model层 /demo/model.py
+##2.3编写model层 /demo/model.py
 ```python
 
     from django.db import models
@@ -36,14 +36,14 @@ pip install djangorestframework
 	    def __str__(self):
 	        return self.username
 ```
-####2.4配置数据库
+##2.4配置数据库
 ```python
 
     python manage.py makemigratons
 	python manage.py migrate
 	python manage.py createsuperuser
 ```
-####2.5配置后台管理 /demo/admin.py
+##2.5配置后台管理 /demo/admin.py
 ```python
 
 	from django.contrib import admin
@@ -54,7 +54,8 @@ pip install djangorestframework
 ```
 此时登陆后台添加一些数据
 ![](http://simplebrightman.github.io/blog/images/django-restful/AddUser.jpg)
-####2.6编写序列化模块 /demo/serializer.py
+(图片不清楚可按住Ctrl+鼠标滚轮放大)
+##2.6编写序列化模块 /demo/serializer.py
 ```python
 
 	# author: HuYong
@@ -71,8 +72,8 @@ pip install djangorestframework
 ```
 	
 序列化联通json与模型层
-####2.7编写url
-#####2.7.1根url  restful/url.py
+##2.7编写url
+###2.7.1根url  restful/url.py
 ```python
 
 	from django.conf.urls import include, url
@@ -83,7 +84,7 @@ pip install djangorestframework
 	    url(r'^api/demo/',include('demo.urls')),
 	]
 ```
-#####2.7.2APP URL　demo/urls.py
+###2.7.2APP URL　demo/urls.py
 ```python
 
 	# author: HuYong
@@ -97,7 +98,7 @@ pip install djangorestframework
 	    url(r'^user/(?P<pk>[0-9]+)/$',views.User_detial),
 	]
 ```
-####2.8编写views层 demo/views.py
+##2.8编写views层 demo/views.py
 ```python
 
 	import json
@@ -154,14 +155,14 @@ pip install djangorestframework
 	        user.delete()
 	        return Response(status=status.HTTP_204_NO_CONTENT)
 ```
-####2.9测试
-####2.9.1获取用户列表
+##2.9测试
+###2.9.1获取用户列表
 * 浏览器访问http://127.0.0.1:8000/api/demo/user/
 ![](http://simplebrightman.github.io/blog/images/django-restful/User_List.jpg)
 这个浏览器访问的界面
 * 通过postman来测试，返回的是json数据
 ![](http://simplebrightman.github.io/blog/images/django-restful/User_List_Json.jpg)
-####2.9.2新增数据
+###2.9.2新增数据
 * 通过postman来测试
 * 简单设置
 ![](http://simplebrightman.github.io/blog/images/django-restful/User_Post1.JPG)
@@ -170,7 +171,7 @@ pip install djangorestframework
 ![](http://simplebrightman.github.io/blog/images/django-restful/User_Post3.JPG)
 * 此时获取用户列表栏
 ![](http://simplebrightman.github.io/blog/images/django-restful/User_List2.JPG)
-####2.9.3对单个用户的操作
+###2.9.3对单个用户的操作
 * URL http://127.0.0.1:8000/api/demo/user/4   （id为4的用户）
 * 获取用户信息（GET）
 ![](http://simplebrightman.github.io/blog/images/django-restful/User4_Get.JPG)
