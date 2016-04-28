@@ -5,6 +5,7 @@ category: 技术
 comments: true
 ---
 ##1.准备工作
+* 官方文档：[http://www.django-rest-framework.org/](http://www.django-rest-framework.org/)
 * 安装django框架
 * 安装django-rsetful 框架
 ```
@@ -180,6 +181,92 @@ pip install djangorestframework
 ![](http://simplebrightman.github.io/blog/images/django-restful/User4_Put2.JPG)
 * 删除用户信息（DELETE）
 ![](http://simplebrightman.github.io/blog/images/django-restful/User4_Delete.JPG)
+##3.基于APIVIEW重写view层
+###3.1重写view层 /demo/views.py
+```python 
+
+	import json
+	from django.shortcuts import render
+	
+	# Create your views here.
+	from rest_framework import status
+	from rest_framework.decorators import api_view
+	from rest_framework.response import Response
+	from rest_framework.views import APIView
+	
+	from demo.models import User
+	from demo.serializer import UserSerializer
+	
+	
+	class UserList(APIView):
+	    def get(self,request,format=None):
+	        users = User.objects.all()
+	        serializer = UserSerializer(users, many=True)
+	        return Response(serializer.data)
+	
+	    def post(self,request,format=None):
+	        serializer = UserSerializer(data=json.loads(request.body))
+	        if serializer.is_valid():
+	            serializer.save()
+	            return Response(serializer.data, status=status.HTTP_201_CREATED)
+	        else:
+	            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+	
+	
+	
+	class UserDetial(APIView):
+	    def getObject(self,pk):
+	        try:
+	            return User.objects.get(pk=pk)
+	        except User.DoesNotExist:
+	            return Response(status=status.HTTP_404_NOT_FOUND)
+	
+	    def get(self,request,pk,format=None):
+	        user = self.getObject(pk)
+	        serializer = UserSerializer(user)
+	        return Response(serializer.data)
+	
+	    def put(self,request,pk,format=None):
+	        user = self.getObject(pk)
+	        serializer = UserSerializer(user, data=json.loads(request.body))
+	        if serializer.is_valid():
+	            serializer.save()
+	            return Response(serializer.data)
+	        else:
+	            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+	
+	    def delete(self,request,pk,format=None):
+	        user = self.getObject(pk)
+	        user.delete()
+	        return Response(status=status.HTTP_204_NO_CONTENT)
+
+```
+###3.2重写url demo/urls.py
+```python
+
+	# author: HuYong
+	# coding=utf-8
+	from django.conf.urls import url
+	from rest_framework.urlpatterns import format_suffix_patterns
+	
+	from demo import views
+	
+	urlpatterns = [
+	    url(r'^user/$',views.UserList.as_view()),
+	    url(r'^user/(?P<pk>[0-9]+)',views.UserDetial.as_view()),
+	]
+	
+	urlpatterns = format_suffix_patterns(urlpatterns)
+```
+###3.3测试
+会有报错，在restful/setting.py中加入
+
+```python
+
+	APPEND_SLASH = False
+```
+
+之后测试正常。
 
 
 
