@@ -99,7 +99,7 @@ pip install djangorestframework
 	            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 	
 	
-	@api_view(['GET', 'PUT', 'DELETE'])
+	@api_view(['GET', 'PUT', 'DELETE']) #
 	def User_detial(request,pk):
 	    try:
 	        user = User.objects.get(pk=pk)
@@ -121,8 +121,37 @@ pip install djangorestframework
 	    elif request.method == "DELETE":
 	        user.delete()
 	        return Response(status=status.HTTP_204_NO_CONTENT)
+
 ####2.9测试
-* 此时访问
+#####2.9.1获取用户列表
+* 浏览器访问http://127.0.0.1:8000/api/demo/user/
+![](http://simplebrightman.github.io/blog/images/django-restful/User_List.jpg)
+这个浏览器访问的界面
+* 通过postman来测试，返回的是json数据
+![](http://simplebrightman.github.io/blog/images/django-restful/User_List_Json.jpg)
+#####2.9.2新增数据
+* 通过postman来测试
+* 简单设置
+![](http://simplebrightman.github.io/blog/images/django-restful/User_Post1.jpg)
+![](http://simplebrightman.github.io/blog/images/django-restful/User_Post2.jpg)
+* 返回的数据：
+![](http://simplebrightman.github.io/blog/images/django-restful/User_Post3.jpg)
+* 此时获取用户列表栏
+![](http://simplebrightman.github.io/blog/images/django-restful/User_List2.jpg)
+#####2.9.3对单个用户的操作
+* URL http://127.0.0.1:8000/api/demo/user/4   （id为4的用户）
+* 获取用户信息（GET）
+![](http://simplebrightman.github.io/blog/images/django-restful/User4_Get.jpg)
+* 修改用户信息（PUT）
+![](http://simplebrightman.github.io/blog/images/django-restful/User4_Put1.jpg)
+![](http://simplebrightman.github.io/blog/images/django-restful/User4_Put2.jpg)
+* 删除用户信息（DELETE）
+![](http://simplebrightman.github.io/blog/images/django-restful/User4_Delete.jpg)
+
+
+
+
+
 
 
 
