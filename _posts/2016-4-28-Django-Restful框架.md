@@ -1,4 +1,9 @@
-##Django-Restful框架
+---
+layout: post
+title: Django-Restful框架
+category: 技术
+comments: true
+---
 ###1.准备工作
 * 安装django框架
 * 安装django-rsetful 框架
@@ -7,12 +12,20 @@ pip install djangorestframework
 ```
 ###2.一个小demo
 ####2.1创建django工程
+```python
+
     django admin startproject restful
 	django admin startapp demo
+```
 ####2.2配置restful环境
+```python
+
     修改restful/settings.py
 	在INSTALLED_APPS 添加 'rest_framework'
+```
 ####2.3编写model层 /demo/model.py
+```python
+
     from django.db import models
 
 	# Create your models here.
@@ -21,19 +34,28 @@ pip install djangorestframework
 	    password = models.CharField(max_length=20,blank=True)
 	    def __str__(self):
 	        return self.username
+```
 ####2.4配置数据库
+```python
+
     python manage.py makemigratons
 	python manage.py migrate
 	python manage.py createsuperuser
+```
 ####2.5配置后台管理 /demo/admin.py
+```python
+
 	from django.contrib import admin
 	# Register your models here.
 	from demo.models import User
 	
 	admin.site.register(User)
+```
 此时登陆后台添加一些数据
 ![](http://simplebrightman.github.io/blog/images/django-restful/AddUser.jpg)
 ####2.6编写序列化模块 /demo/serializer.py
+```python
+
 	# author: HuYong
 	# coding=utf-8
 	from rest_framework import serializers
@@ -45,10 +67,13 @@ pip install djangorestframework
 	    class Meta:
 	        model = User
 	        fields = ("id","username","password")
+```
 	
 序列化联通json与模型层
 ####2.7编写url
 #####2.7.1根url  restful/url.py
+```python
+
 	from django.conf.urls import include, url
 	from django.contrib import admin
 	
@@ -56,7 +81,10 @@ pip install djangorestframework
 	    url(r'^admin/', include(admin.site.urls)),
 	    url(r'^api/demo/',include('demo.urls')),
 	]
+```
 #####2.7.2APP URL　demo/urls.py
+```python
+
 	# author: HuYong
 	# coding=utf-8
 	from django.conf.urls import url
@@ -67,7 +95,10 @@ pip install djangorestframework
 	    url(r'^user/$',views.User_list),
 	    url(r'^user/(?P<pk>[0-9]+)/$',views.User_detial),
 	]
+```
 ####2.8编写views层 demo/views.py
+```python
+
 	import json
 	
 	from django.shortcuts import render
@@ -121,7 +152,7 @@ pip install djangorestframework
 	    elif request.method == "DELETE":
 	        user.delete()
 	        return Response(status=status.HTTP_204_NO_CONTENT)
-
+```
 ####2.9测试
 #####2.9.1获取用户列表
 * 浏览器访问http://127.0.0.1:8000/api/demo/user/
